@@ -1,3 +1,12 @@
+/*
+ * MapPlane.cpp
+ * Provided as a part of MapPlanner Software
+ * Author: Akinori Ito
+ *            aito@fw.ipsj.or.jp
+ * 2017.5.7
+ * See LICENCE.txt for license of this software.
+ */
+
 #include "stdafx.h"
 #include "MapPlane.h"
 #include <string>
