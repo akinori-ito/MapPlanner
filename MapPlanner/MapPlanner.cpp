@@ -13,7 +13,7 @@ int main()
 	// ƒeƒXƒg
 	PPM *org;
 	try {
-		org = PPM::create("..\\Debug\\map.ppm");
+		org = PPM::create("map.ppm");
 	}
 	catch (const char *mesg) {
 		std::cout << mesg << std::endl;
@@ -27,7 +27,7 @@ int main()
 	// “¹‚ð’T‚·
 	try {
 		PathFinder pf(newmap);
-		std::vector<PathFinder::Position> res = pf.find(414, 616, 412, 332);
+		std::vector<PathFinder::Position> res = pf.find(414, 616, 349, 88); //pf.find(414, 616, 412, 332);
 		for (int i = 0; i < res.size(); i++)
 			std::cout << "(" << res.at(i).x << "," << res.at(i).y << ")" << std::endl;
 		for (int i = 0; i < res.size(); i++) {
