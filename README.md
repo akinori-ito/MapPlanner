@@ -62,15 +62,15 @@ A\*アルゴリズムを使っており、ポテンシャルは考慮しない�
 
   bool is\_bright(int x, int y)                               (x,y)のピクセル値が設定してある閾値（メンバ変数threshold）より明るいか どうかを判定する。明るい場合はtrueを返す。
 
-  MapPlane\* mask\_brighter(int length, uint8\_t threshold)   元のマップに対して、明るい点の周辺length×lengthの正方形領域を「明るい」点に設定した新たなマップを返す。
+  MapPlane\* mask\_brighter(int length, uint8\_t threshold)   元のマップに対して、明るい点の周辺length×lengthの正方形領域を「明るい」点に設定した新たなマップを返す。ここで指定した閾値が、新たなマップの変数thresholdに設定される。
 
-  MapPlane\* mask\_darker(int length, uint8\_t threshold)     元のマップに対して、暗い点の周辺length×lengthの正方形領域を「暗い」点に設定した新たなマップを返す。
+  MapPlane\* mask\_darker(int length, uint8\_t threshold)     元のマップに対して、暗い点の周辺length×lengthの正方形領域を「暗い」点に設定した新たなマップを返す。ここで指定した閾値が、新たなマップの変数thresholdに設定される。
+
   PPM\* toPPM()                                               マップをPPM形式画像に変換し、その画像を返す。
 
 ### PathFinderクラス
 
-マップの経路探索をするためのクラスである。必要なマップを生成した後、PathFinderのインスタンスを生成して、find()メソッドを呼ぶことで経路が
-探索される。
+マップの経路探索をするためのクラスである。必要なマップを生成した後、PathFinderのインスタンスを生成して、find()メソッドを呼ぶことで経路が探索される。
 
 #### コンストラクタとファクトリメソッド
 
@@ -78,7 +78,7 @@ A\*アルゴリズムを使っており、ポテンシャルは考慮しない�
 
 #### メソッド
 
-  std::vector&lt;PathFinder::Position&gt;& find(int x1, int y1, int x2, int y2)   (x1, y1)から(x2, y2)への最短経路を計算する。計算された最短経路は、PathFinder::Position型のvectorとして帰ってくる。 PathFinder::Position型 は、xとyの2つのメンバ変数を持つ単純な構造体である。始点または終点の座標が移動可能（明るいピクセル）でなかった場合には例外を投げる。ま た、始点と終点がそれぞれ属する領域が連結でない場合（経路がない）場合にも例外を投げる。
+  std::vector&lt;PathFinder::Position&gt;& find(int x1, int y1, int x2, int y2)   (x1, y1)から(x2, y2)への最短経路を計算する。計算された最短経路は、PathFinder::Position型のvectorとして帰ってくる。 PathFinder::Position型 は、xとyの2つのメンバ変数を持つ単純な構造体である。始点または終点の座標が移動可能（明るいピクセル）でなかった場合には例外を投げる。ま た、始点と終点がそれぞれ属する領域が連結でない（経路がない）場合にも例外を投げる。
 
 ### PPMクラス
 

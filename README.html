@@ -89,11 +89,13 @@
         </tr>
         <tr>
           <td>MapPlane* mask_brighter(int length, uint8_t threshold)</td>
-          <td>元のマップに対して、明るい点の周辺length×lengthの正方形領域を「明るい」点に設定した新たなマップを返す。</td>
+          <td>元のマップに対して、明るい点の周辺length×lengthの正方形領域を「明るい」点に設定した新たなマップを返す。ここで指定した閾
+            値が、新たなマップの変数thresholdに設定される。</td>
         </tr>
         <tr>
           <td>MapPlane* mask_darker(int length, uint8_t threshold)</td>
-          <td>元のマップに対して、暗い点の周辺length×lengthの正方形領域を「暗い」点に設定した新たなマップを返す。</td>
+          <td>元のマップに対して、暗い点の周辺length×lengthの正方形領域を「暗い」点に設定した新たなマップを返す。ここで指定した閾値
+            が、新たなマップの変数thresholdに設定される。</td>
         </tr>
         <tr>
           <td>PPM* toPPM()</td>
@@ -124,7 +126,7 @@
             y2)への最短経路を計算する。計算された最短経路は、PathFinder::Position型のvectorとして帰ってくる。
             PathFinder::Position型
             は、xとyの2つのメンバ変数を持つ単純な構造体である。始点または終点の座標が移動可能（明るいピクセル）でなかった場合には例外を投げる。ま
-            た、始点と終点がそれぞれ属する領域が連結でない場合（経路がない）場合にも例外を投げる。 </td>
+            た、始点と終点がそれぞれ属する領域が連結でない（経路がない）場合にも例外を投げる。 </td>
         </tr>
       </tbody>
     </table>
@@ -155,8 +157,8 @@
         </tr>
         <tr>
           <td style="width: 282.9px;">PPM* create(const char *filename)</td>
-          <td style="width: 466.1px;">ファイルからPPM画像を読み込む。ファイルが存在しない場合、ファイル形式が異常な場合な
-            どの場合は例外を投げる。</td>
+          <td style="width: 466.1px;">ファイルからPPM画像を読み込む。ファイルが存在しない場合、ファイル形式が異常な場合
+            な どの場合は例外を投げる。</td>
         </tr>
       </tbody>
     </table>
