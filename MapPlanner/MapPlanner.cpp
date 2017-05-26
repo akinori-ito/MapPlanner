@@ -32,14 +32,23 @@ int main()
 
 	// “¹‚ð’T‚·
 	try {
-		PathFinder pf(newmap);
+		MapPlane *map2 = new MapPlane(newmap);
+		PathFinder pf(map2);
 		std::vector<PathFinder::Position> res = pf.find(414, 616, 349, 88); //pf.find(414, 616, 412, 332);
 		for (int i = 0; i < res.size(); i++)
 			std::cout << "(" << res.at(i).x << "," << res.at(i).y << ")" << std::endl;
 		for (int i = 0; i < res.size(); i++) {
 			ppm->point(res[i].x, res[i].y) = PPM::RED;
 		}
+		std::cout << "----------------" << std::endl;
+		std::vector<PathFinder::Position> simplepath = pf.makeLines(res);
+		for (int i = 0; i < simplepath.size(); i++) {
+			std::cout << "(" << simplepath[i].x << "," << simplepath[i].y << ")" << std::endl;
+			if (i > 0)
+				ppm->drawLine(simplepath[i - 1].x, simplepath[i - 1].y, simplepath[i].x, simplepath[i].y, PPM::BLUE);
+		}
 		ppm->write("Result.ppm");
+		delete map2;
 	}
 	catch (char *err) {
 		std::cerr << err << std::endl;

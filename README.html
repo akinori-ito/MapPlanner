@@ -128,6 +128,12 @@
             は、xとyの2つのメンバ変数を持つ単純な構造体である。始点または終点の座標が移動可能（明るいピクセル）でなかった場合には例外を投げる。ま
             た、始点と終点がそれぞれ属する領域が連結でない（経路がない）場合にも例外を投げる。 </td>
         </tr>
+       <tr>
+          <td style="width: 235.133px;">std::vector&lt;PathFinder::Position&gt;&amp;
+            makeLines(std::vector&lt;PathFinder::Position&gt;&amp; path)</td>
+          <td style="width: 513.867px;">find()が返す経路は１ピクセルごとの座標列であるが、makeLines()はその座標列を引数とし、できるだけ数の少ない直線列にまとめたうえ、直線の端点列を返す。
+          </td>
+        </tr>
       </tbody>
     </table>
     <h3> PPMクラス</h3>
@@ -181,6 +187,9 @@
           <td>void write(const char *filename)</td>
           <td>ファイルにPPM画像を書きだす。</td>
         </tr>
+        <tr>
+          <td>void drawLine(int x1, int y1, int x2, int y2, pixel pix)</td>
+          <td>(x1,y1)から(x2,y2)までの直線上のピクセル値をpixにセットする。</td>
       </tbody>
     </table>
     <br>

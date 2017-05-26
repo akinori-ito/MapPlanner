@@ -78,8 +78,9 @@ A\*アルゴリズムを使っており、ポテンシャルは考慮しない�
 
 #### メソッド
 
-  std::vector&lt;PathFinder::Position&gt;& find(int x1, int y1, int x2, int y2)   (x1, y1)から(x2, y2)への最短経路を計算する。計算された最短経路は、PathFinder::Position型のvectorとして帰ってくる。 PathFinder::Position型 は、xとyの2つのメンバ変数を持つ単純な構造体である。始点または終点の座標が移動可能（明るいピクセル）でなかった場合には例外を投げる。ま た、始点と終点がそれぞれ属する領域が連結でない（経路がない）場合にも例外を投げる。
+  std::vector&lt;PathFinder::Position&gt;& find(int x1, int y1, int x2, int y2)   (x1, y1)から(x2, y2)への最短経路を計算する。計算された最短経路は、PathFinder::Position型のvectorとして帰ってくる。 PathFinder::Position型 は、xとyの2つのメンバ変数を持つ単純な構造体である。始点または終点の座標が移動可能（明るいピクセル）でなかった場合には例外を投げる。また、始点と終点がそれぞれ属する領域が連結でない（経路がない）場合にも例外を投げる。
 
+std::vector<PathFinder::Position>& makeLines(std::vector<PathFinder::Position>& path)  find()が返す経路は１ピクセルごとの座標列であるが、makeLines()はその座標列を引数とし、できるだけ数の少ない直線列にまとめたうえ、直線の端点列を返す。 
 ### PPMクラス
 
 PPM (Portable
@@ -108,6 +109,8 @@ Pixmap)形式の非圧縮画像を扱うクラス。PPM形式と類似した画�
   pixel& point(int x, int y)          (x,y)のピクセルへの参照を返す。
 
   void write(const char \*filename)   ファイルにPPM画像を書きだす。
+
+  void drawLine(int x1, int y1, int x2, int y2, pixel pix)     (x1,y1)から(x2,y2)までの直線上のピクセル値をpixにセットする。
 
 ### PPM::pixelクラス
 

@@ -174,3 +174,29 @@ void PPM::write(const char *filename)
 	fclose(f);
 }
 
+void PPM::drawLine(int x1, int y1, int x2, int y2, PPM::pixel pix)
+{
+	if (x1 == x2) {
+		int y;
+		if (y1 > y2) {
+			y = y1; y1 = y2; y2 = y;
+		}
+		for (y = y1; y <= y2; y++) {
+			point(x1, y) = pix;
+		}
+	}
+	else {
+		int x, y;
+		if (x1 > x2) {
+			x = x1; x1 = x2; x2 = x;
+			y = y1; y1 = y2; y2 = y;
+		}
+		int diff = x2 - x1;
+		double a = (double)(y2 - y1) / diff;
+		for (int i = 0; i <= diff; i++) {
+			double y = a*i + y1;
+			point(x1 + i, (int)y) = pix;
+		}
+
+	}
+}

@@ -112,3 +112,46 @@ std::vector<PathFinder::Position>& PathFinder::find(int x1, int y1, int x2, int 
 	return *res;
 }
 
+//
+// Direction index:
+//   0  1  2
+//   3     4
+//   5  6  7
+//
+// direction() returns the direction index from (x0,y0) and (x1,y1)
+// where the center point is (x0,y0) and the other point is (x1,y1), and
+// |x0-x1| <= 1 and |y0-y1| <= 1.
+//
+static int dirindex[8][2] = {
+	{-1,-1}, {0,-1}, {1,-1}, {-1,0}, {1,0}, {-1,1}, {0,1}, {1,1}
+};
+
+static int direction(PathFinder::Position p0, PathFinder::Position p1)
+{
+	int xdiff = p1.x - p0.x;
+	int ydiff = p1.y - p0.y;
+	for (int i = 0; i < 8; i++) {
+		if (xdiff == dirindex[i][0] && ydiff == dirindex[i][1])
+			return i;
+	}
+	// falling to here means that (x1,y1) is not an 8-neighbor of (x0,y0)
+	return -1;
+}
+
+std::vector<PathFinder::Position>& PathFinder::makeLines(std::vector<PathFinder::Position>& pos)
+{
+	std::vector<PathFinder::Position> *res = new std::vector<PathFinder::Position>();
+	int current_direction = -1;
+	if (pos.size() == 0)
+		return *res;
+
+	for (int i = 1; i < pos.size()-1; i++) {
+		int dir = direction(pos[i - 1], pos[i]);
+		if (dir != current_direction) {
+			current_direction = dir;
+			res->push_back(pos[i - 1]);
+		}
+	}
+	res->push_back(pos[pos.size() - 1]);
+	return *res;
+}

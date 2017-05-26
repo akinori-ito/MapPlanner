@@ -63,6 +63,7 @@ public:
 	PathFinder(MapPlane *m);
 	~PathFinder();
 	std::vector<Position>& find(int x1, int y1, int x2, int y2);
+	std::vector<Position>& makeLines(std::vector<Position>& pos);
 };
 
 bool operator< (const PositionTrace &p, const PositionTrace &q); 
